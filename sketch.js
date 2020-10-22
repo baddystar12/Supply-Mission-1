@@ -57,11 +57,11 @@ function draw() {
 	background("turquoise");
 	Engine.update(engine);
 	rectMode(CENTER);
-    rect(ground.position.x, ground.position.y, 400, 20);
-    ellipse(package.position.x, package.position.y, 20, 20);
+    packageSprite.x = packageBody.position.x;
+	packageSprite.y = packageBody.position.y;
+    drawSprites();
 	if(keyDown("space")){
 	Matter.Body.setStatic(packageBody, false);
 }
-    drawSprites();
  
 }
