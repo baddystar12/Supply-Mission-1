@@ -30,23 +30,25 @@ function setup() {
 
 	engine = Engine.create();
 	world = engine.world;
-
-	packageBody = Bodies.circle(width/2 , 200 , 5 );
-	World.add(world, packageBody);
-	
-
-
-	ground = Bodies.rectangle(width/2, 650, width, 10);
- 	World.add(world, ground);
-
-
-	Engine.run(engine);
 	var ground_options={
 		isStatic:true
 	}
   var package_options={
-	  restitution: 1
+	  restitution: 1,
+	  isStatic:true
   }
+
+	packageBody = Bodies.circle(width/2 , 200 , 5, package_options );
+	World.add(world, packageBody);
+	
+
+
+	ground = Bodies.rectangle(width/2, 650, width, 10, ground_options);
+ 	World.add(world, ground);
+
+
+	Engine.run(engine);
+	
 
 }
 
@@ -57,10 +59,9 @@ function draw() {
 	rectMode(CENTER);
     rect(ground.position.x, ground.position.y, 400, 20);
     ellipse(package.position.x, package.position.y, 20, 20);
+	if(keyDown("space")){
+	Matter.Body.setStatic(packageBody, false);
+}
     drawSprites();
  
-}
-
-if(keyDown("space")){
-	restitution: 1
 }
